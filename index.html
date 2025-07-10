@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dika ID - Solusi Digital Cepat & Aman</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="blob-container">
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
+
+<header>
+  <div>
+    <h1 style="margin: 0;">Dika ID</h1>
+    <p style="margin: 0; font-size: 0.9rem; font-weight: 500;">Solusi Digital Cepat & Aman</p>
+  </div>
+  <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+</header>
+
+<a href="https://wa.me/6283841442290" target="_blank" class="wa-fixed" id="wa-chat" aria-label="Chat WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" />
+  Chat Admin
+</a>
+
+<div class="container" id="main-page">
+  <div id="lanjutkan-box" style="display:none; text-align:center; padding:1rem;">
+  <p style="margin-bottom: 0.5rem;">Ada pesanan yang belum anda selesaikan!</p>
+  <div style="display:flex; gap: 0.5rem; justify-content:center; flex-wrap:wrap;">
+    <button onclick="lanjutkanPesanan()" style="background:#007BFF;">Lanjutkan</button>
+    <button onclick="batalkanProgressPesanan()" style="background:#dc3545;">Batalkan</button>
+  </div>
+</div>
+  
+  <div class="profile">
+  <div class="profile-header">
+    <h2>Dika Pamungkas</h2>
+    <p><strong>Pemrograman & Web Developer</strong></p>
+  </div>
+
+  <div class="profile-content">
+    <img src="https://iili.io/Fub8VGp.jpg" alt="Profile">
+    <div class="bio">
+      <p>📍 Jawa Tengah, Indonesia</p>
+      <p>📩 dikaapamungkas9821@gmail.com</p>
+      <p>💡 Teknologi Informasi Komunikasi</p>
+    </div>
+  </div>
+</div>
+
+  <div class="audio-player">
+  <div class="audio-info">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#007BFF" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/>
+    </svg>
+    <span id="audio-title">everything u are - hindia</span>
+  </div>
+  <button id="audio-btn" onclick="toggleAudio()" class="audio-toggle-btn" aria-label="Toggle Audio">
+    <svg id="audio-icon" width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+  </button>
+  <audio id="bg-audio" loop preload="auto">
+    <source src="https://files.catbox.moe/fetvle.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+
+  <div class="section faq">
+    <h2>FAQ - Informasi Edukatif</h2>
+    <h3>Apa Itu Panel Pterodactyl?</h3>
+    <p>Panel Pterodactyl adalah platform manajemen server berbasis web yang memudahkan pengguna dalam mengelola server untuk berbagai kebutuhan seperti game server, bot WhatsApp, aplikasi, dan lain-lain.</p>
+    <h3>Apa itu VPS DigitalOcean?</h3>
+    <p>VPS (Virtual Private Server) DigitalOcean adalah layanan server virtual yang dapat digunakan untuk menjalankan berbagai aplikasi seperti bot WhatsApp, website, panel Pterodactyl, dan lain-lain.</p>
+    <h3>Apa itu Bot WhatsApp?</h3>
+    <p>Bot WhatsApp adalah program otomatis yang digunakan untuk membalas pesan, menjalankan perintah, atau memberikan layanan tertentu di WhatsApp tanpa campur tangan manual.</p>
+  </div>
+  
+  <div class="section products" id="product-list">
+
+  <input type="search" placeholder="Cari produk..." id="search" oninput="delayedSearch()" style="width: 100%; padding: 0.7rem; border-radius: 5px; border: 1px solid #ccc; font-size: 1rem;">
+  
+  <select id="filter-kategori" onchange="filterByKategori()" style="margin-bottom: 2rem; padding: 0.5rem; font-size: 1rem; border-radius: 5px;">
+  <option value="">🔍 Semua Kategori</option>
+  <option value="public">Panel Server Public</option>
+  <option value="private">Panel Server Private</option>
+  <option value="vps">VPS Digital Ocean</option>
+  <option value="bot">Pembuatan Bot Wa</option>
+  <option value="script">Script Bot Wa</option>
+</select>
+  
+    <h2>Panel Server Public</h2>
+    <div class="product-list" id="list-public"></div>
+
+    <h2>Panel Server Private</h2>
+    <div class="product-list" id="list-private"></div>
+
+    <h2>VPS Digital Ocean</h2>
+    <div class="product-list" id="list-vps"></div>
+
+    <h2>Pembuatan Bot Wa</h2>
+    <div class="product-list" id="list-bot"></div>
+    
+    <h2>Script Bot Wa</h2>
+    <div class="product-list" id="list-script"></div>
+
+  </div>
+</div>
+
+<div id="preview-popup">
+  <div class="preview-box">
+    <div class="preview-img-container">
+      <img id="preview-img" src="" alt="Preview Produk" onclick="toggleZoom(this, event)">
+    </div>
+    <div id="preview-dots" style="display: flex; justify-content: center; gap: 6px; margin-bottom: 1rem;"></div>
+    <button class="close-btn" onclick="closePreview()">Tutup</button>
+  </div>
+</div>
+
+<!-- HALAMAN PEMBAYARAN -->
+<div class="payment-page" id="payment-page">
+  <h2 id="item-kategori" style="margin: 0 0 0.3rem 0; color: var(--text-color); font-weight: 600;">-</h2>
+<h2 id="item-title" style="margin: 0.3rem 0 1rem 0; color: var(--text-color); font-weight: 600;">-</h2>
+  <h3 style="font-size:1.8rem; margin: 1.5rem 0; color:#00c8ff;">Rp<span id="total-price">0</span></h3>
+
+  <p style="margin:1rem 0 0.5rem 0;">Pilih metode pembayaran:</p>
+  
+  <div class="payment-options" style="display:flex; justify-content:center; flex-wrap:wrap;">
+    <img src="https://iili.io/FTuZHOJ.png" alt="DANA" onclick="selectPayment('DANA')">
+    <img src="https://iili.io/FTuZ9Ra.png" alt="QRIS" onclick="selectPayment('QRIS')">
+  </div>
+
+  <div id="payment-info" style="margin-top:1rem;"></div>
+
+  <button onclick="confirmCancel()" style="background:#20c997; color:white;">Kembali</button>
+</div>
+
+<div id="popup-alert">
+  <div class="box">
+    <h3>Perhatian!</h3>
+    <p id="alert-message">Pesan muncul di sini.</p>
+    <button style="background:#007BFF;" onclick="closeAlert()">Oke</button>
+  </div>
+</div>
+
+<div id="popup-confirm">
+  <div class="box">
+    <h3>Konfirmasi Pembayaran</h3>
+    <p>Apakah Anda yakin sudah melakukan pembayaran?</p>
+    <div style="margin-top:1.5rem;">
+      <button style="background:#28a745;" onclick="proceedWhatsApp()">Ya, Lanjut</button>
+      <button style="background:red;" onclick="closePopup()">Batalkan</button>
+    </div>
+  </div>
+</div>
+
+<div id="popup-cancel" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+  <div class="box" style="background:var(--popup-bg); color:var(--text-color); padding:2rem; border-radius:10px; max-width:300px; width:90%; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.3); animation:pop 0.3s ease;">
+    <h3>Batalkan Pesanan?</h3>
+    <p>Yakin ingin kembali dan batalkan pesanan ini?</p>
+    <div style="margin-top:1.5rem;">
+      <button style="background:#28a745;" onclick="proceedCancel()">Ya, Batalkan</button>
+      <button style="background:red;" onclick="closeCancelPopup()">Tidak</button>
+    </div>
+  </div>
+</div>
+
+<div id="confirmation-page" class="payment-page" style="display:none;">
+  <h2 style="color:green;">Terima kasih telah mengkonfirmasi pembayaran Anda!</h2>
+  <p style="margin: 1rem 0 2rem;">Pembayaran Anda akan segera diproses.</p>
+  <button onclick="returnToMain()">Kembali</button>
+</div>
+
+<div id="toast">Nomor berhasil disalin!</div>
+
+<div id="popup-qris" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99999; align-items: center; justify-content: center;">
+  <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; text-align: center; max-width: 320px; width: 90%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    
+    <h3 style="margin-bottom: 0.5rem;">Scan QRIS Pembayaran</h3>
+    <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 1rem;">Screenshot QRIS ini dan scan di aplikasi e-wallet Anda</p>
+
+    <img src="https://iili.io/FTuP3ml.md.jpg" alt="QRIS" style="width: 100%; max-width: 250px; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+
+    <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://iili.io/FTuP3ml.md.jpg" download>
+        <button class="btn">Download QRIS</button>
+      </a>
+      <button class="btn" style="background:#28a745;" onclick="confirmPayment()">Selesai Bayar</button>
+      <button class="btn cancel" style="background:red; color:white;" onclick="closeQrisPopup()">Batalkan</button>
+    </div>
+  </div>
+</div>
+
+<div id="popup-dana" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 99999; align-items: center; justify-content: center;">
+  <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; text-align: center; max-width: 320px; width: 90%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    
+    <h3 style="margin-bottom: 0.5rem;">Pembayaran DANA</h3>
+    <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 1rem;">Silakan transfer ke nomor berikut:</p>
+
+    <p id="nomor-dana" style="font-size: 1.2rem; font-weight: bold; margin: 0;">081227434223</p>
+    <p style="margin: 0.3rem 0 1rem; font-size: 0.95rem; color: gray;">a.n. DikaStudent</p>
+
+    <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+      <button class="btn" onclick="copyRekening()">Copy Rekening</button>
+      <button class="btn" style="background:#28a745;" onclick="confirmPayment()">Selesai Bayar</button>
+      <button class="btn cancel" style="background:red; color:white;" onclick="closeDanaPopup()">Batalkan</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
+<!-- dika -->
